@@ -6,16 +6,27 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.0
-Release:	0.1
+Release:	0.2
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 
+BuildRequires:	nas-devel
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(libpulse)
+BuildRequires:	pkgconfig(libusb-1.0)
+BuildRequires:	pkgconfig(udev)
+BuildRequires:	pkgconfig(xcursor)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xi)
+BuildRequires:	pkgconfig(xinerama)
 BuildRequires:	pkgconfig(xrandr)
+BuildRequires:	pkgconfig(xscrnsaver)
+BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
 
 #----------------------------------------------------------------------------
