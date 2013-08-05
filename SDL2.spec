@@ -1,12 +1,12 @@
 %define	api	2.0
 %define	major	0
-%define	libname	%mklibname SDL %{api} %{major}
+%define	libname	%mklibname %{name}_ %{api} %{major}
 %define	devname	%mklibname %{name} -d
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.0
-Release:	0.2
+Release:	0.3
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
