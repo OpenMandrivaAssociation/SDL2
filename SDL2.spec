@@ -6,7 +6,7 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.0
-Release:	0.3
+Release:	0.4
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -18,7 +18,7 @@ BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(libpulse)
-BuildRequires:	pkgconfig(libusb-1.0)
+BuildRequires:	pkgconfig(libusb)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(xext)
