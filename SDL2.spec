@@ -6,11 +6,12 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.1
-Release:	7
+Release:	8
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.0-cmake.patch
 Patch1:		SDL2-2.0.1-cmake-joystick.patch
 BuildRequires:	nas-devel
@@ -83,6 +84,7 @@ applications which will use %{name}.
 
 %install
 %makeinstall_std -C build
+install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 rm -f %{buildroot}%{_libdir}/*.a
 
