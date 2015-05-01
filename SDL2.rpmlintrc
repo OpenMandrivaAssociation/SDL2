@@ -1,7 +1,7 @@
 #_exit@GLIBC_2.0
 addFilter("W: shared-lib-calls-exit")
 # libSDL-devel is provided by sdl1
-addFilter("W: no-provides libSDL-devel")
+addFilter("W: no-provides")
 # packagers don't write manpages
 addFilter("W: no-manual-page-for-binary")
 # EVRD macro lack
