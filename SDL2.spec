@@ -1,17 +1,19 @@
 %define	api	2.0
-%define	major	0
+%define	major	1
 %define	libname	%mklibname %{name}_ %{api} %{major}
 %define	devname	%mklibname %{name} -d
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.0
+Version:	2.0.3
 Release:	2
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-
+Source1:	FindSDL2.cmake
+Patch0:		SDL2-2.0.3-cmake.patch
+Patch1:		SDL2-2.0.3-cmake-joystick.patch
 BuildRequires:	nas-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(dbus-1)
@@ -28,6 +30,7 @@ BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xscrnsaver)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	cmake
 
 #----------------------------------------------------------------------------
 
@@ -46,6 +49,7 @@ linked with %{name}.
 
 %files -n %{libname}
 %doc README.txt README-SDL.txt CREDITS.txt COPYING.txt BUGS.txt WhatsNew.txt
+%{_libdir}/libSDL2-%{api}.so.0*
 %{_libdir}/libSDL2-%{api}.so.%{major}*
 
 #----------------------------------------------------------------------------
@@ -64,34 +68,26 @@ applications which will use %{name}.
 %doc README.txt README-SDL.txt CREDITS.txt COPYING.txt BUGS.txt WhatsNew.txt
 %{_bindir}/sdl2-config
 %{_libdir}/pkgconfig/sdl2.pc
-%{_libdir}/*.so
+%{_libdir}/libSDL2-%{api}.so
+%{_libdir}/libSDL2.so
 %dir %{_includedir}/SDL2
 %{_includedir}/SDL2/*.h
 %{_datadir}/aclocal/sdl2.m4
+%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 #----------------------------------------------------------------------------
 
 %prep
 %setup -q
+%apply_patches
 
 %build
-%configure2_5x \
-	--disable-static \
-	--disable-rpath \
-	--disable-esd \
-	--disable-oss \
-	--enable-pulseaudio \
-	--enable-pulseaudio-shared \
-	--enable-alsa \
-	--enable-alsa-shared
-
-sed -i s,"objdir=.libs","objdir=",g libtool
+%cmake -DRPATH:BOOL=OFF
 %make
 
 %install
-rm build/libSDL2.la
-cp build/libSDL2.lai build/libSDL2.la
-%makeinstall_std
+%makeinstall_std -C build
+install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 rm -f %{buildroot}%{_libdir}/*.a
 

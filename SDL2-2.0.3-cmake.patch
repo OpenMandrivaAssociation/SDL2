@@ -1,0 +1,15 @@
+--- SDL2-2.0.3/CMakeLists.txt.0000~	2014-10-16 19:43:26.528909611 +0200
++++ SDL2-2.0.3/CMakeLists.txt	2014-10-16 19:44:36.350202265 +0200
+@@ -148,9 +148,9 @@ else("$ENV{CFLAGS}" STREQUAL "")
+   set(CMAKE_C_FLAGS "$ENV{CFLAGS}")
+   list(APPEND EXTRA_CFLAGS "$ENV{CFLAGS}")
+ endif()
+-if(NOT ("$ENV{CFLAGS}" STREQUAL "")) # Hackish, but does the trick on Win32
+-  list(APPEND EXTRA_LDFLAGS "$ENV{LDFLAGS}")
+-endif()
++#if(NOT ("$ENV{CFLAGS}" STREQUAL "")) # Hackish, but does the trick on Win32
++#  list(APPEND EXTRA_LDFLAGS "$ENV{LDFLAGS}")
++#endif()
+ 
+ if(MSVC)
+   option(FORCE_STATIC_VCRT "Force /MT for static VC runtimes" OFF)
