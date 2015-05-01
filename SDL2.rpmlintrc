@@ -1,0 +1,10 @@
+#_exit@GLIBC_2.0
+addFilter("W: shared-lib-calls-exit")
+# libSDL-devel is provided by sdl1
+addFilter("W: no-provides libSDL-devel")
+# packagers don't write manpages
+addFilter("W: no-manual-page-for-binary")
+# EVRD macro lack
+addFilter("E: no-dependency-on")
+# OMA licensing policy sucks
+addFilter("W: invalid-license")

@@ -11,6 +11,7 @@ License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
+Source100:	%{name}.rpmlintrc
 Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.3-cmake.patch
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
@@ -57,8 +58,8 @@ linked with %{name}.
 %package -n	%{devname}
 Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
 
 %description -n	%{devname}
 This package contains the headers that programmers will need to develop
