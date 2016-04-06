@@ -6,7 +6,7 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.3
-Release:	3
+Release:	4
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -82,6 +82,8 @@ applications which will use %{name}.
 %apply_patches
 
 %build
+# all programs using SDL2 hang when built with clang
+export CC=gcc
 %cmake -DRPATH:BOOL=OFF
 %make
 
