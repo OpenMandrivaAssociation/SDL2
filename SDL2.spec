@@ -1,12 +1,12 @@
-%define	api	2.0
-%define	major	1
-%define	libname	%mklibname %{name}_ %{api} %{major}
-%define	devname	%mklibname %{name} -d
+%define api 2.0
+%define major 1
+%define libname %mklibname %{name}_ %{api} %{major}
+%define devname %mklibname %{name} -d
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.3
-Release:	4
+Version:	2.0.4
+Release:	1
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -14,6 +14,9 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.3-cmake.patch
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
+# (tpg) Patches from Fedora
+Patch2:		bug_822210_fix_sdl2-config.cmake_whitespace.patch
+Patch3:		SDL2-wayland-fixes.patch
 BuildRequires:	nas-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(dbus-1)
@@ -30,6 +33,14 @@ BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xscrnsaver)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(libsystemd)
+BuildRequires:	pkgconfig(libpulse-simple)
+BuildRequires:	pkgconfig(wayland-client)
+BuildRequires:	pkgconfig(wayland-egl)
+BuildRequires:	pkgconfig(wayland-cursor)
+BuildRequires:	pkgconfig(wayland-protocols)
+BuildRequires:	pkgconfig(wayland-scanner)
+BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	cmake
 
 #----------------------------------------------------------------------------
