@@ -1,5 +1,5 @@
 %define api 2.0
-%define major 1
+%define major 0
 %define libname %mklibname %{name}_ %{api} %{major}
 %define devname %mklibname %{name} -d
 
@@ -35,6 +35,7 @@ BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(libpulse-simple)
+BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-egl)
 BuildRequires:	pkgconfig(wayland-cursor)
