@@ -71,6 +71,10 @@ Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
+Requires:	pkgconfig(alsa)
+Requires:	pkgconfig(gl)
+Requires:	pkgconfig(glu)
+Requires:	pkgconfig(egl)
 
 %description -n	%{devname}
 This package contains the headers that programmers will need to develop
@@ -96,7 +100,9 @@ applications which will use %{name}.
 %build
 # all programs using SDL2 hang when built with clang
 export CC=gcc
-%cmake -DRPATH:BOOL=OFF
+#cmake -DRPATH:BOOL=OFF
+%configure
+
 %make
 
 %install
