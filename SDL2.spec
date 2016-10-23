@@ -1,5 +1,5 @@
 %define api 2.0
-%define major 0
+%define major 1
 %define libname %mklibname %{name}_ %{api} %{major}
 %define devname %mklibname %{name} -d
 
@@ -48,7 +48,7 @@ This is the Simple DirectMedia Layer, a generic API that provides low level
 access to audio, keyboard, mouse, and display framebuffer across multiple
 platforms.
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Main library for %{name}
 Group:		System/Libraries
 
@@ -57,13 +57,12 @@ This package contains the library needed to run programs dynamically
 linked with %{name}.
 
 %files -n %{libname}
-%doc README.txt README-SDL.txt CREDITS.txt COPYING.txt BUGS.txt WhatsNew.txt
 %{_libdir}/libSDL2-%{api}.so.0*
 %{_libdir}/libSDL2-%{api}.so.%{major}*
 
 #----------------------------------------------------------------------------
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
@@ -106,4 +105,3 @@ export CC=gcc
 install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 rm -f %{buildroot}%{_libdir}/*.a
-
