@@ -1,12 +1,12 @@
-%define	api	2.0
-%define	major	1
-%define	libname	%mklibname %{name}_ %{api} %{major}
-%define	devname	%mklibname %{name} -d
+%define api 2.0
+%define major 1
+%define libname %mklibname %{name}_ %{api} %{major}
+%define devname %mklibname %{name} -d
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.5
-Release:	1
+Release:	2
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -30,6 +30,15 @@ BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xscrnsaver)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(libsystemd)
+BuildRequires:	pkgconfig(libpulse-simple)
+BuildRequires:	pkgconfig(egl)
+BuildRequires:	pkgconfig(wayland-client)
+BuildRequires:	pkgconfig(wayland-egl)
+BuildRequires:	pkgconfig(wayland-cursor)
+BuildRequires:	pkgconfig(wayland-protocols)
+BuildRequires:	pkgconfig(wayland-scanner)
+BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	cmake
 
 #----------------------------------------------------------------------------
@@ -39,7 +48,7 @@ This is the Simple DirectMedia Layer, a generic API that provides low level
 access to audio, keyboard, mouse, and display framebuffer across multiple
 platforms.
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Main library for %{name}
 Group:		System/Libraries
 
@@ -48,17 +57,20 @@ This package contains the library needed to run programs dynamically
 linked with %{name}.
 
 %files -n %{libname}
-%doc README.txt README-SDL.txt CREDITS.txt COPYING.txt BUGS.txt WhatsNew.txt
 %{_libdir}/libSDL2-%{api}.so.0*
 %{_libdir}/libSDL2-%{api}.so.%{major}*
 
 #----------------------------------------------------------------------------
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
+Requires:	pkgconfig(alsa)
+Requires:	pkgconfig(gl)
+Requires:	pkgconfig(glu)
+Requires:	pkgconfig(egl)
 
 %description -n	%{devname}
 This package contains the headers that programmers will need to develop
@@ -85,6 +97,7 @@ applications which will use %{name}.
 # all programs using SDL2 hang when built with clang
 export CC=gcc
 %cmake -DRPATH:BOOL=OFF
+
 %make
 
 %install
@@ -92,4 +105,3 @@ export CC=gcc
 install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 rm -f %{buildroot}%{_libdir}/*.a
-
