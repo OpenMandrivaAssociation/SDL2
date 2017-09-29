@@ -96,7 +96,11 @@ applications which will use %{name}.
 %build
 # all programs using SDL2 hang when built with clang
 export CC=gcc
-%cmake -DRPATH:BOOL=OFF
+%cmake \
+%ifnarch %{ix86}
+	-DSSEMATH:BOOL=OFF \
+%endif
+	-DRPATH:BOOL=OFF
 
 %make
 
