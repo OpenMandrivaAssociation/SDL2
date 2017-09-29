@@ -5,7 +5,7 @@
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.5
+Version:	2.0.6
 Release:	2
 License:	Zlib
 Group:		System/Libraries
@@ -39,6 +39,8 @@ BuildRequires:	pkgconfig(wayland-cursor)
 BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	pkgconfig(wayland-scanner)
 BuildRequires:	pkgconfig(xkbcommon)
+BuildRequires:	pkgconfig(samplerate)
+BuildRequires:	vulkan-devel
 BuildRequires:	cmake
 
 #----------------------------------------------------------------------------
@@ -58,7 +60,6 @@ linked with %{name}.
 
 %files -n %{libname}
 %{_libdir}/libSDL2-%{api}.so.0*
-%{_libdir}/libSDL2-%{api}.so.%{major}*
 
 #----------------------------------------------------------------------------
 
@@ -86,6 +87,7 @@ applications which will use %{name}.
 %{_includedir}/SDL2/*.h
 %{_datadir}/aclocal/sdl2.m4
 %{_datadir}/cmake/Modules/FindSDL2.cmake
+%{_prefix}/lib/cmake/SDL2
 
 #----------------------------------------------------------------------------
 
@@ -100,7 +102,8 @@ export CC=gcc
 %ifnarch %{ix86}
 	-DSSEMATH:BOOL=OFF \
 %endif
-	-DRPATH:BOOL=OFF
+	-DRPATH:BOOL=OFF \
+	-DVIDEO_VULKAN:BOOL=ON
 
 %make
 
