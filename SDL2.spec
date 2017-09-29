@@ -58,7 +58,6 @@ linked with %{name}.
 
 %files -n %{libname}
 %{_libdir}/libSDL2-%{api}.so.0*
-%{_libdir}/libSDL2-%{api}.so.%{major}*
 
 #----------------------------------------------------------------------------
 
@@ -86,6 +85,7 @@ applications which will use %{name}.
 %{_includedir}/SDL2/*.h
 %{_datadir}/aclocal/sdl2.m4
 %{_datadir}/cmake/Modules/FindSDL2.cmake
+%{_prefix}/lib/cmake/SDL2
 
 #----------------------------------------------------------------------------
 
