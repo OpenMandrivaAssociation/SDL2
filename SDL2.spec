@@ -40,7 +40,9 @@ BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	pkgconfig(wayland-scanner)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(samplerate)
+%ifnarch %{armx}
 BuildRequires:	vulkan-devel
+%endif
 BuildRequires:	cmake
 
 #----------------------------------------------------------------------------
@@ -102,8 +104,11 @@ export CC=gcc
 %ifnarch %{ix86}
 	-DSSEMATH:BOOL=OFF \
 %endif
-	-DRPATH:BOOL=OFF \
-	-DVIDEO_VULKAN:BOOL=ON
+%ifnarch %{armx}
+	-DVIDEO_VULKAN:BOOL=ON \
+%endif
+	-DRPATH:BOOL=OFF
+
 
 %make
 
