@@ -6,7 +6,7 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.6
-Release:	2
+Release:	3
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -55,6 +55,13 @@ platforms.
 %package -n %{libname}
 Summary:	Main library for %{name}
 Group:		System/Libraries
+# SDL 2.0's soname went from 1 to 0...
+# Let's provide .so.1 as well for compatibility
+%if "%{_lib}" == "lib64"
+Provides:	libSDL2-%{api}.so.1()(64bit)
+%else
+Provides:	libSDL2-%{api}.so.1
+%endif
 
 %description -n	%{libname}
 This package contains the library needed to run programs dynamically
@@ -62,6 +69,7 @@ linked with %{name}.
 
 %files -n %{libname}
 %{_libdir}/libSDL2-%{api}.so.0*
+%{_libdir}/libSDL2-%{api}.so.1*
 
 #----------------------------------------------------------------------------
 
@@ -115,5 +123,7 @@ export CC=gcc
 %install
 %makeinstall_std -C build
 install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
+
+ln -s libSDL2-%{api}.so.0 %{buildroot}%{_libdir}/libSDL2-%{api}.so.1
 
 rm -f %{buildroot}%{_libdir}/*.a
