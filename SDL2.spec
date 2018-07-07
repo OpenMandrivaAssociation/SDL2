@@ -14,6 +14,9 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.3-cmake.patch
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
+# From upstream
+# https://hg.libsdl.org/SDL/rev/a358a111ff69
+Patch2:		a358a111ff69.patch
 BuildRequires:	nas-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(dbus-1)
@@ -102,14 +105,11 @@ applications which will use %{name}.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
-# all programs using SDL2 hang when built with clang
-export CC=gcc
 %cmake \
-%ifnarch %{ix86}
+%ifnarch %{ix86} %{x86_64}
 	-DSSEMATH:BOOL=OFF \
 %endif
 %ifnarch %{armx}
