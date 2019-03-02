@@ -6,7 +6,7 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.8
-Release:	2
+Release:	3
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -96,6 +96,7 @@ applications which will use %{name}.
 %{_libdir}/pkgconfig/sdl2.pc
 %{_libdir}/libSDL2-%{api}.so
 %{_libdir}/libSDL2.so
+%{_libdir}/libSDL2main.a
 %dir %{_includedir}/SDL2
 %{_includedir}/SDL2/*.h
 %{_datadir}/aclocal/sdl2.m4
@@ -112,9 +113,13 @@ applications which will use %{name}.
 %ifnarch %{ix86} %{x86_64}
 	-DSSEMATH:BOOL=OFF \
 %endif
-%ifnarch %{armx}
-	-DVIDEO_VULKAN:BOOL=ON \
+%ifarch znver1
+	-DSSEMATH:BOOL=ON \
 %endif
+	-DESD:BOOL=OFF \
+	-DESD_SHARED:BOOL=OFF \
+	-DSDL_STATIC:BOOL=OFF \
+	-DVIDEO_VULKAN:BOOL=ON \
 	-DRPATH:BOOL=OFF
 
 
@@ -125,5 +130,3 @@ applications which will use %{name}.
 install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 ln -s libSDL2-%{api}.so.0 %{buildroot}%{_libdir}/libSDL2-%{api}.so.1
-
-rm -f %{buildroot}%{_libdir}/*.a
