@@ -5,8 +5,8 @@
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.8
-Release:	3
+Version:	2.0.9
+Release:	1
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -14,9 +14,6 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.3-cmake.patch
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
-# From upstream
-# https://hg.libsdl.org/SDL/rev/a358a111ff69
-Patch2:		a358a111ff69.patch
 BuildRequires:	nas-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(dbus-1)

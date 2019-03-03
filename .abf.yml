@@ -1,4 +1,2 @@
-removed_sources:
-  SDL2-2.0.7.tar.gz: 0a530ccdab99cbfe906dba912049e26e3c7219d6
 sources:
-  SDL2-2.0.8.tar.gz: 959ec6ded277821995d2e3cafd973f6ab9f48ab7
+  SDL2-2.0.9.tar.gz: 4354c6baad9a48486182656a7506abfb63e9bff5
