@@ -8,7 +8,7 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.9
-Release:	2
+Release:	3
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -23,6 +23,7 @@ BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libusb-1.0)
+BuildRequires:	pkgconfig(libusb)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(xext)
@@ -86,7 +87,7 @@ Requires:	pkgconfig(gl)
 Requires:	pkgconfig(glu)
 Requires:	pkgconfig(egl)
 
-%description -n	%{devname}
+%description -n %{devname}
 This package contains the headers that programmers will need to develop
 applications which will use %{name}.
 
