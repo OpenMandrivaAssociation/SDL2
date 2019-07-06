@@ -3,10 +3,12 @@
 %define libname %mklibname %{name}_ %{api} %{major}
 %define devname %mklibname %{name} -d
 
+%global optflags %{optflags} -O3
+
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.9
-Release:	1
+Release:	2
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -20,7 +22,7 @@ BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(libpulse)
-BuildRequires:	pkgconfig(libusb)
+BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(xext)
@@ -33,6 +35,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(libpulse-simple)
 BuildRequires:	pkgconfig(egl)
+BuildRequires:	pkgconfig(gbm)
 BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-egl)
 BuildRequires:	pkgconfig(wayland-cursor)
@@ -120,10 +123,10 @@ applications which will use %{name}.
 	-DRPATH:BOOL=OFF
 
 
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 ln -s libSDL2-%{api}.so.0 %{buildroot}%{_libdir}/libSDL2-%{api}.so.1
