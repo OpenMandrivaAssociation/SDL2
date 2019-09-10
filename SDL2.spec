@@ -16,7 +16,9 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.3-cmake.patch
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
+%ifnarch %{riscv}
 BuildRequires:	nas-devel
+%endif
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(gl)
