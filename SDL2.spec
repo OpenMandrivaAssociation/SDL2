@@ -8,7 +8,7 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.10
-Release:	1
+Release:	2
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -16,6 +16,7 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.3-cmake.patch
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
+Patch2:		https://src.fedoraproject.org/rpms/SDL2/raw/master/f/SDL2-2.0.9-khrplatform.patch
 %ifnarch %{riscv}
 BuildRequires:	nas-devel
 %endif
