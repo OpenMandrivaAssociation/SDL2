@@ -105,7 +105,7 @@ applications which will use %{name}.
 %{_includedir}/SDL2/*.h
 %{_datadir}/aclocal/sdl2.m4
 %{_datadir}/cmake/Modules/FindSDL2.cmake
-#%{_prefix}/lib/cmake/SDL2
+%{_libdir}/lib/cmake/SDL2/*
 
 #----------------------------------------------------------------------------
 
