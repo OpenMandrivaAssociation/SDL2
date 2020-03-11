@@ -7,8 +7,8 @@
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.10
-Release:	2
+Version:	2.0.12
+Release:	1
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -105,7 +105,7 @@ applications which will use %{name}.
 %{_includedir}/SDL2/*.h
 %{_datadir}/aclocal/sdl2.m4
 %{_datadir}/cmake/Modules/FindSDL2.cmake
-%{_prefix}/lib/cmake/SDL2
+%{_libdir}/cmake/SDL2/*
 
 #----------------------------------------------------------------------------
 
