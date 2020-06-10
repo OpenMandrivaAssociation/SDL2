@@ -1,14 +1,21 @@
+# SDL2 is used by wine
+%ifarch %{x86_64}
+%bcond_without compat32
+%endif
+
 %define api 2.0
 %define major 1
 %define libname %mklibname %{name}_ %{api} %{major}
 %define devname %mklibname %{name} -d
+%define lib32name %mklib32name %{name}_ %{api} %{major}
+%define dev32name %mklib32name %{name} -d
 
 %global optflags %{optflags} -O3
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.12
-Release:	2
+Release:	3
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -17,6 +24,7 @@ Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.3-cmake.patch
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
 Patch2:		https://src.fedoraproject.org/rpms/SDL2/raw/master/f/SDL2-2.0.9-khrplatform.patch
+Patch3:		SDL2-2.0.12-llvm-libunwind.patch
 %ifnarch %{riscv}
 BuildRequires:	nas-devel
 %endif
@@ -52,6 +60,31 @@ BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	vulkan-devel
 %endif
 BuildRequires:	cmake
+%if %{with compat32}
+BuildRequires:	devel(libasound)
+BuildRequires:	devel(libdbus-1)
+BuildRequires:	devel(libGL)
+BuildRequires:	devel(libGLU)
+BuildRequires:	devel(libdrm)
+BuildRequires:	devel(libpulse)
+BuildRequires:	devel(libusb-1.0)
+BuildRequires:	devel(libudev)
+BuildRequires:	devel(libXcursor)
+BuildRequires:	devel(libXext)
+BuildRequires:	devel(libXi)
+BuildRequires:	devel(libXinerama)
+BuildRequires:	devel(libXrandr)
+BuildRequires:	devel(libXss)
+BuildRequires:	devel(libXxf86vm)
+BuildRequires:	devel(libz)
+BuildRequires:	devel(libsystemd)
+BuildRequires:	devel(libpulse-simple)
+BuildRequires:	devel(libEGL)
+BuildRequires:	devel(libgbm)
+BuildRequires:	devel(libxkbcommon)
+BuildRequires:	devel(libsamplerate)
+BuildRequires:	devel(libunwind)
+%endif
 
 #----------------------------------------------------------------------------
 

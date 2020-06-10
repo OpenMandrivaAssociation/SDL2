@@ -1,0 +1,13 @@
+diff -up SDL2-2.0.12/CMakeLists.txt.omv~ SDL2-2.0.12/CMakeLists.txt
+--- SDL2-2.0.12/CMakeLists.txt.omv~	2020-06-10 23:29:48.479150919 +0200
++++ SDL2-2.0.12/CMakeLists.txt	2020-06-10 23:30:31.243604418 +0200
+@@ -1196,7 +1196,8 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROI
+       if(HAVE_LIBUNWIND_H)
+         # We've already found the header, so REQUIRE the lib to be present
+         pkg_search_module(UNWIND REQUIRED libunwind)
+-        pkg_search_module(UNWIND_GENERIC REQUIRED libunwind-generic)
++	# LLVM libunwind doesn't use libunwind-generic
++	# pkg_search_module(UNWIND_GENERIC REQUIRED libunwind-generic)
+         list(APPEND EXTRA_LIBS ${UNWIND_LIBRARIES} ${UNWIND_GENERIC_LIBRARIES})
+       endif()
+     endif()
