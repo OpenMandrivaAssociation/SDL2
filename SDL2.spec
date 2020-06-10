@@ -15,7 +15,7 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.12
-Release:	3
+Release:	4
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -59,7 +59,7 @@ BuildRequires:	pkgconfig(samplerate)
 %ifnarch %{armx}
 BuildRequires:	vulkan-devel
 %endif
-BuildRequires:	cmake
+BuildRequires:	cmake ninja
 %if %{with compat32}
 BuildRequires:	devel(libasound)
 BuildRequires:	devel(libdbus-1)
@@ -143,10 +143,57 @@ applications which will use %{name}.
 
 #----------------------------------------------------------------------------
 
+%if %{with compat32}
+%package -n %{lib32name}
+Summary:	Main library for %{name} (32-bit)
+Group:		System/Libraries
+
+%description -n	%{lib32name}
+This package contains the library needed to run programs dynamically
+linked with %{name}.
+
+%files -n %{lib32name}
+%{_prefix}/lib/libSDL2-%{api}.so.0*
+
+#----------------------------------------------------------------------------
+
+%package -n %{dev32name}
+Summary:	Headers for developing programs that will use %{name} (32-bit)
+Group:		Development/C
+Requires:	%{devname} = %{version}-%{release}
+Requires:	%{lib32name} = %{version}-%{release}
+Requires:	devel(libasound)
+Requires:	devel(libGL)
+Requires:	devel(libGLU)
+Requires:	devel(libEGL)
+
+%description -n %{dev32name}
+This package contains the headers that programmers will need to develop
+applications which will use %{name}.
+
+%files -n %{dev32name}
+%{_prefix}/lib/pkgconfig/sdl2.pc
+%{_prefix}/lib/libSDL2-%{api}.so
+%{_prefix}/lib/libSDL2.so
+%{_prefix}/lib/libSDL2main.a
+%{_prefix}/lib/cmake/SDL2/*
+%endif
+
 %prep
 %autosetup -p1
 
-%build
+%if %{with compat32}
+%cmake32 \
+	-DSSEMATH:BOOL=ON \
+	-DESD:BOOL=OFF \
+	-DESD_SHARED:BOOL=OFF \
+	-DSDL_STATIC:BOOL=OFF \
+	-DVIDEO_VULKAN:BOOL=ON \
+	-DRPATH:BOOL=OFF \
+	-G Ninja
+cd ..
+%endif
+
 %cmake \
 %ifnarch %{ix86} %{x86_64}
 	-DSSEMATH:BOOL=OFF \
@@ -158,13 +205,20 @@ applications which will use %{name}.
 	-DESD_SHARED:BOOL=OFF \
 	-DSDL_STATIC:BOOL=OFF \
 	-DVIDEO_VULKAN:BOOL=ON \
-	-DRPATH:BOOL=OFF
+	-DRPATH:BOOL=OFF \
+	-G Ninja
 
-
-%make_build
+%build
+%if %{with compat32}
+%ninja_build -C build32
+%endif
+%ninja_build -C build
 
 %install
-%make_install -C build
+%if %{with compat32}
+%ninja_install -C build32
+%endif
+%ninja_install -C build
 install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 ln -s libSDL2-%{api}.so.0 %{buildroot}%{_libdir}/libSDL2-%{api}.so.1
