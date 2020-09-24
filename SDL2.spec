@@ -56,7 +56,7 @@ BuildRequires:	pkgconfig(wayland-protocols)
 BuildRequires:	pkgconfig(wayland-scanner)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(samplerate)
-%ifnarch %{armx}
+%ifnarch %{arm}
 BuildRequires:	vulkan-devel
 %endif
 BuildRequires:	cmake ninja
