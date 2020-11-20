@@ -15,7 +15,7 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.0.12
-Release:	5
+Release:	6
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -24,7 +24,8 @@ Source1:	FindSDL2.cmake
 Patch0:		SDL2-2.0.3-cmake.patch
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
 Patch2:		https://src.fedoraproject.org/rpms/SDL2/raw/master/f/SDL2-2.0.9-khrplatform.patch
-Patch3:		SDL2-2.0.12-llvm-libunwind.patch
+# (tpg) enable when LLVM's libunwid is set by default
+#Patch3:		SDL2-2.0.12-llvm-libunwind.patch
 %ifnarch %{riscv}
 BuildRequires:	nas-devel
 %endif
