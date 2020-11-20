@@ -10,7 +10,7 @@
 %define lib32name %mklib32name %{name}_ %{api} %{major}
 %define dev32name %mklib32name %{name} -d
 
-%global optflags %{optflags} -O3
+%global optflags %{optflags} -O3 -I%{_includedir}/libunwind
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
