@@ -40,6 +40,7 @@ BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libusb)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(libunwind)
+BuildRequires:	pkgconfig(libunwind-generic)
 BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xi)
@@ -86,7 +87,7 @@ BuildRequires:	devel(libEGL)
 BuildRequires:	devel(libgbm)
 BuildRequires:	devel(libxkbcommon)
 BuildRequires:	devel(libsamplerate)
-BuildRequires:	devel(libunwind)
+BuildRequires:	libunwind-nongnu-devel
 %endif
 
 #----------------------------------------------------------------------------
