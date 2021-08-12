@@ -14,7 +14,7 @@
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.14
+Version:	2.0.16
 Release:	1
 License:	Zlib
 Group:		System/Libraries
@@ -133,7 +133,7 @@ This package contains the headers that programmers will need to develop
 applications which will use %{name}.
 
 %files -n %{devname}
-%doc README.txt README-SDL.txt CREDITS.txt COPYING.txt BUGS.txt WhatsNew.txt
+%doc README-SDL.txt CREDITS.txt BUGS.txt WhatsNew.txt
 %{_bindir}/sdl2-config
 %{_libdir}/pkgconfig/sdl2.pc
 %{_libdir}/libSDL2-%{api}.so
@@ -210,6 +210,7 @@ cd ..
 	-DSDL_STATIC:BOOL=OFF \
 	-DVIDEO_VULKAN:BOOL=ON \
 	-DRPATH:BOOL=OFF \
+	-DLIB_SUFFIX="" \
 	-G Ninja
 
 %build
