@@ -1,10 +1,11 @@
---- SDL2-2.0.3/CMakeLists.txt.0001~	2014-10-16 19:45:02.187347638 +0200
-+++ SDL2-2.0.3/CMakeLists.txt	2014-10-16 19:45:38.448019788 +0200
-@@ -573,6 +573,7 @@ foreach(_SUB ${SDL_SUBSYSTEMS})
-   endif()
- endforeach()
- if(SDL_JOYSTICK)
-+  file(GLOB JOYSTICK_SOURCES ${SDL2_SOURCE_DIR}/src/joystick/*.c ${SDL2_SOURCE_DIR}/src/core/linux/SDL_udev.c)
-   file(GLOB JOYSTICK_SOURCES ${SDL2_SOURCE_DIR}/src/joystick/*.c)
-   set(SOURCE_FILES ${SOURCE_FILES} ${JOYSTICK_SOURCES})
- endif()
+diff -uraN SDL2-2.0.22/CMakeLists.txt omv-SDL2-2.0.22/CMakeLists.txt
+--- SDL2-2.0.22/CMakeLists.txt	2022-04-21 19:37:37.000000000 +0200
++++ omv-SDL2-2.0.22/CMakeLists.txt	2022-05-16 16:18:20.547915437 +0200
+@@ -1432,6 +1432,7 @@
+     endif()
+     if(LINUX AND NOT ANDROID)
+       set(SDL_JOYSTICK_LINUX 1)
++      file(GLOB JOYSTICK_SOURCES ${SDL2_SOURCE_DIR}/src/joystick/*.c ${SDL2_SOURCE_DIR}/src/core/linux/SDL_udev.c)
+       file(GLOB JOYSTICK_SOURCES ${SDL2_SOURCE_DIR}/src/joystick/linux/*.c ${SDL2_SOURCE_DIR}/src/joystick/steam/*.c)
+       set(SOURCE_FILES ${SOURCE_FILES} ${JOYSTICK_SOURCES})
+       set(HAVE_SDL_JOYSTICK TRUE)

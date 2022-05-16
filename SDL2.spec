@@ -14,7 +14,7 @@
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.20
+Version:	2.0.22
 Release:	1
 License:	Zlib
 Group:		System/Libraries
@@ -34,6 +34,7 @@ BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(ibus-1.0)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
+BuildRequires:	pkgconfig(libdecor-0)
 BuildRequires:	pkgconfig(libdrm)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libpipewire-0.3)
