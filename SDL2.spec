@@ -14,8 +14,8 @@
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.22
-Release:	2
+Version:	2.0.24
+Release:	1
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
@@ -23,7 +23,6 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Source1:	FindSDL2.cmake
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
 Patch2:		https://src.fedoraproject.org/rpms/SDL2/raw/master/f/SDL2-2.0.9-khrplatform.patch
-Patch3:		https://src.fedoraproject.org/rpms/SDL2/raw/rawhide/f/SDL2-2.0.22-prefer-wayland.patch
 Patch4:		SDL2-libunwind-generic-linkage.patch
 # (tpg) enable when LLVM's libunwid is set by default
 #Patch5:		SDL2-2.0.12-llvm-libunwind.patch
