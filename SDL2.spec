@@ -14,7 +14,7 @@
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.0.24
+Version:	2.24.0
 Release:	1
 License:	Zlib
 Group:		System/Libraries
@@ -23,7 +23,7 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Source1:	FindSDL2.cmake
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
 Patch2:		https://src.fedoraproject.org/rpms/SDL2/raw/master/f/SDL2-2.0.9-khrplatform.patch
-Patch4:		SDL2-libunwind-generic-linkage.patch
+#Patch4:		SDL2-libunwind-generic-linkage.patch
 # (tpg) enable when LLVM's libunwid is set by default
 #Patch5:		SDL2-2.0.12-llvm-libunwind.patch
 %ifnarch %{riscv}
@@ -142,11 +142,13 @@ applications which will use %{name}.
 
 %files -n %{devname}
 %doc README-SDL.txt CREDITS.txt BUGS.txt WhatsNew.txt
+%doc %{_datadir}/licenses/SDL2/LICENSE.txt
 %{_bindir}/sdl2-config
 %{_libdir}/pkgconfig/sdl2.pc
 %{_libdir}/libSDL2-%{api}.so
 %{_libdir}/libSDL2.so
 %{_libdir}/libSDL2main.a
+%{_libdir}/libSDL2_test.a
 %dir %{_includedir}/SDL2
 %{_includedir}/SDL2/*.h
 %{_datadir}/aclocal/sdl2.m4
@@ -188,6 +190,7 @@ applications which will use %{name}.
 %{_prefix}/lib/libSDL2-%{api}.so
 %{_prefix}/lib/libSDL2.so
 %{_prefix}/lib/libSDL2main.a
+%{_prefix}/lib/libSDL2_test.a
 %{_prefix}/lib/cmake/SDL2/*
 %endif
 
