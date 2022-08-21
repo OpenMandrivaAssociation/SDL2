@@ -23,7 +23,7 @@ Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
 Source1:	FindSDL2.cmake
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
 Patch2:		https://src.fedoraproject.org/rpms/SDL2/raw/master/f/SDL2-2.0.9-khrplatform.patch
-Patch4:		SDL2-libunwind-generic-linkage.patch
+#Patch4:		SDL2-libunwind-generic-linkage.patch
 # (tpg) enable when LLVM's libunwid is set by default
 #Patch5:		SDL2-2.0.12-llvm-libunwind.patch
 %ifnarch %{riscv}
