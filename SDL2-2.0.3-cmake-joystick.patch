@@ -1,11 +1,12 @@
-diff -uraN SDL2-2.24.0/CMakeLists.txt omv-SDL2-2.24.0/CMakeLists.txt
---- SDL2-2.24.0/CMakeLists.txt	2022-08-19 17:46:21.000000000 +0200
-+++ omv-SDL2-2.24.0/CMakeLists.txt	2022-08-21 19:03:38.135512396 +0200
-@@ -1509,6 +1509,7 @@
+diff -up SDL2-2.26.0/CMakeLists.txt.1~ SDL2-2.26.0/CMakeLists.txt
+--- SDL2-2.26.0/CMakeLists.txt.1~	2022-11-22 11:51:37.838558597 +0100
++++ SDL2-2.26.0/CMakeLists.txt	2022-11-22 12:11:10.371851517 +0100
+@@ -1607,7 +1607,7 @@ elseif(UNIX AND NOT APPLE AND NOT RISCOS
      endif()
-     if(LINUX AND NOT ANDROID)
+     if(LINUX AND HAVE_LINUX_INPUT_H AND NOT ANDROID)
        set(SDL_JOYSTICK_LINUX 1)
-+      file(GLOB JOYSTICK_SOURCES ${SDL2_SOURCE_DIR}/src/joystick/*.c ${SDL2_SOURCE_DIR}/src/core/linux/SDL_udev.c)
-       file(GLOB JOYSTICK_SOURCES ${SDL2_SOURCE_DIR}/src/joystick/linux/*.c ${SDL2_SOURCE_DIR}/src/joystick/steam/*.c)
+-      file(GLOB JOYSTICK_SOURCES ${SDL2_SOURCE_DIR}/src/joystick/linux/*.c ${SDL2_SOURCE_DIR}/src/joystick/steam/*.c)
++      file(GLOB JOYSTICK_SOURCES ${SDL2_SOURCE_DIR}/src/joystick/linux/*.c ${SDL2_SOURCE_DIR}/src/joystick/steam/*.c ${SDL2_SOURCE_DIR}/src/core/linux/SDL_udev.c)
        list(APPEND SOURCE_FILES ${JOYSTICK_SOURCES})
        set(HAVE_SDL_JOYSTICK TRUE)
+     endif()
