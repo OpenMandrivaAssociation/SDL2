@@ -15,12 +15,11 @@
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
 Version:	2.26.0
-Release:	1
+Release:	2
 License:	Zlib
 Group:		System/Libraries
 Url:		http://www.libsdl.org/
 Source0:	http://www.libsdl.org/release/%{name}-%{version}.tar.gz
-Source1:	FindSDL2.cmake
 Patch1:		SDL2-2.0.3-cmake-joystick.patch
 #Patch4:		SDL2-libunwind-generic-linkage.patch
 # (tpg) enable when LLVM's libunwid is set by default
@@ -151,7 +150,6 @@ applications which will use %{name}.
 %dir %{_includedir}/SDL2
 %{_includedir}/SDL2/*.h
 %{_datadir}/aclocal/sdl2.m4
-%{_datadir}/cmake/Modules/FindSDL2.cmake
 %{_libdir}/cmake/SDL2/*
 
 #----------------------------------------------------------------------------
@@ -234,6 +232,5 @@ cd ..
 %ninja_install -C build32
 %endif
 %ninja_install -C build
-install -m644 %{SOURCE1} -D %{buildroot}%{_datadir}/cmake/Modules/FindSDL2.cmake
 
 ln -s libSDL2-%{api}.so.0 %{buildroot}%{_libdir}/libSDL2-%{api}.so.1
