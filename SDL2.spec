@@ -14,7 +14,7 @@
 
 Summary:	Simple DirectMedia Layer
 Name:		SDL2
-Version:	2.26.5
+Version:	2.28.0
 Release:	1
 License:	Zlib
 Group:		System/Libraries
